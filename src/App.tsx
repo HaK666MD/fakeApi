@@ -8,28 +8,14 @@ import { LoginPage } from './pages/Login';
 
 function App() {
   return (
-    <>
-      <Routes>
-        <Route path='/' element={<LoginPage />} />
-        <Route
-          path='/products'
-          element={
-            <PrivateWrapper>
-              <ListPage />
-            </PrivateWrapper>
-          }
-        />
-        <Route
-          path='/products/:id'
-          element={
-            <PrivateWrapper>
-              <DetailPage />
-            </PrivateWrapper>
-          }
-        />
-        <Route path='*' element={<h4>Not Found</h4>} />
-      </Routes>
-    </>
+    <Routes>
+      <Route path='/' element={<LoginPage />} />
+      <Route element={<PrivateWrapper />}>
+        <Route path='/products' element={<ListPage />} />
+        <Route path='/products/:id' element={<DetailPage />} />
+      </Route>
+      <Route path='*' element={<h4>Not Found</h4>} />
+    </Routes>
   );
 }
 

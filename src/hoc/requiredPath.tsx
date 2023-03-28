@@ -1,8 +1,9 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 import { useAppSelector } from '../redux/hook';
 
-export const PrivateWrapper = ({ children }: { children: JSX.Element }) => {
+export const PrivateWrapper = () => {
+  const token = localStorage.getItem('Token');
   const { userToken } = useAppSelector((state) => state.auth);
-  return userToken ? children : <Navigate to='/' />;
+  return token || userToken ? <Outlet /> : <Navigate to='/' />;
 };
